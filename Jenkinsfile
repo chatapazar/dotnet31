@@ -5,13 +5,13 @@
 // the getVersionFromPom will attempt to read the version information that it encounter at the
 // first occurance.
 
-def DEV_PROJECTNAME = "demo-dev"
-def UAT_PROJECTNAME = "demo-uat"
-def BUILDCONFIGNAME="sampledotnet"
-def IMAGE_NAME="sampledotnet:latest"
-def UATIMAGENAME = "sampledotnet:UATReady-1.0.0"
+def DEV_PROJECTNAME = "demo-dev31"
+//def UAT_PROJECTNAME = "demo-uat"
+def BUILDCONFIGNAME="sampledotnet31"
+def IMAGE_NAME="sampledotnet31:latest"
+def UATIMAGENAME = "sampledotnet31:UATReady-1.0.0"
 
-node('dotnet-22') {
+node('dotnet-31') {
 
   stage('Clone') {
     // sh "git clone http://gogs-pbb-cicd.apps.ocp.demo.com/poc/sampledotnet.git"
@@ -36,7 +36,7 @@ node('dotnet-22') {
 
   stage('Build Image') {
     sh "oc -n $DEV_PROJECTNAME start-build $BUILDCONFIGNAME --from-dir=./bin/Release/netcoreapp2.2/rhel.7-x64/publish --follow"
-    sh "oc -n $DEV_PROJECTNAME tag $DEV_PROJECTNAME/$IMAGE_NAME $UAT_PROJECTNAME/$UATIMAGENAME"
+    //sh "oc -n $DEV_PROJECTNAME tag $DEV_PROJECTNAME/$IMAGE_NAME $UAT_PROJECTNAME/$UATIMAGENAME"
   }
   
 }
